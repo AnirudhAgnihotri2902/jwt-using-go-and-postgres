@@ -10,7 +10,7 @@ import (
 )
 
 func main() {
-	client, err := ent.Open("postgres", "host=localhost port=5432 user=postgres dbname=Densityasmt password=Anirudh@123 sslmode=disable")
+	client, err := ent.Open("postgres", "host=postgres port=5432 user=postgres dbname=Densityasmt password=Anirudh@123 sslmode=disable")
 	if err != nil {
 		log.Fatalf("failed opening connection to postgres: %v", err)
 	}
@@ -27,5 +27,5 @@ func main() {
 	http.HandleFunc("/refresh", handlers.Refresh)
 	http.HandleFunc("/logout", handlers.Logout)
 
-	log.Fatal(http.ListenAndServe(":8080", nil))
+	log.Fatal(http.ListenAndServe("0.0.0.0:8080", nil))
 }

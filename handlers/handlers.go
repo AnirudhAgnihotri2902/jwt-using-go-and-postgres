@@ -34,7 +34,7 @@ type Claims struct {
 
 // signup handler..
 func Signup(w http.ResponseWriter, r *http.Request) {
-	client, err01 := ent.Open("postgres", "host=localhost port=5432 user=postgres dbname=Densityasmt password=Anirudh@123 sslmode=disable")
+	client, err01 := ent.Open("postgres", "host=postgres port=5432 user=postgres dbname=Densityasmt password=Anirudh@123 sslmode=disable")
 	if err01 != nil {
 		log.Fatalf("failed opening connection to postgres: %v", err01)
 	}
@@ -89,7 +89,7 @@ func Signup(w http.ResponseWriter, r *http.Request) {
 
 // login handler..
 func Login(w http.ResponseWriter, r *http.Request) {
-	client, err01 := ent.Open("postgres", "host=localhost port=5432 user=postgres dbname=Densityasmt password=Anirudh@123 sslmode=disable")
+	client, err01 := ent.Open("postgres", "host=postgres port=5432 user=postgres dbname=Densityasmt password=Anirudh@123 sslmode=disable")
 	if err01 != nil {
 		log.Fatalf("failed opening connection to postgres: %v", err01)
 	}
