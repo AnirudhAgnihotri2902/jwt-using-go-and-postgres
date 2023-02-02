@@ -1,0 +1,55 @@
+version: '3'
+services:
+  app:
+    container_name: signinwithjwt
+    build: .
+    ports: 
+      - 8080:8080 
+    restart: on-failure
+    volumes:
+      - api:/usr/src/app/
+    depends_on:
+      - fullstack-postgres          
+    networks:
+      - fullstack
+
+
+  fullstack-postgres:
+    image: postgres:latest
+    container_name: postgres_db
+    environment:
+      - POSTGRES_USER=postgres  
+      - POSTGRES_PASSWORD=Anirudh@123
+      - POSTGRES_DB=Densityasmt
+      - DATABASE_HOST=postgres
+    ports:
+      - '5432:5432'
+    volumes:
+      - database_postgres:/var/lib/postgresql/data
+    networks:
+      - fullstack
+    
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: pgadmin_container
+    environment:
+      PGADMIN_DEFAULT_EMAIL: codewithanirudhagni@gmail.com
+      PGADMIN_DEFAULT_PASSWORD: Anirudh@123
+    depends_on:
+      - fullstack-postgres
+    ports:
+      - "5050:80"
+    networks:
+      - fullstack
+    restart: unless-stopped
+
+volumes:
+  api:
+  database_postgres:                  
+
+# Networks to be created to facilitate communication between containers
+networks:
+  fullstack:
+    driver: bridge
+
+    
